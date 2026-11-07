@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #f5efe0;
+  --foreground: #1a1a1a;
+  --card: #fdfbf5;
+  --card-foreground: #1a1a1a;
+  --primary: #c1272d;
+  --primary-foreground: #fdfbf5;
+  --secondary: #ece3d0;
+  --secondary-foreground: #1a1a1a;
+  --muted: #ece3d0;
+  --muted-foreground: #6b6355;
+  --accent: #c1272d;
+  --accent-foreground: #fdfbf5;
+  --destructive: #c1272d;
+  --border: #ddd2bd;
+  --input: #ddd2bd;
+  --ring: #c1272d;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #161210;
+  --foreground: #f5efe0;
+  --card: #1f1a17;
+  --card-foreground: #f5efe0;
+  --primary: #e03131;
+  --primary-foreground: #fdfbf5;
+  --secondary: #2a2420;
+  --secondary-foreground: #f5efe0;
+  --muted: #2a2420;
+  --muted-foreground: #a89f8d;
+  --accent: #e03131;
+  --border: #2a2420;
+  --input: #2a2420;
+  --ring: #e03131;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+}

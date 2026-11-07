@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Harpa Vermelha">
+  <rect width="512" height="512" rx="96" fill="#1A1A1A"/>
+  <!-- open hymn book -->
+  <path d="M256 108 C216 84 156 76 108 88 L108 366 C156 354 216 362 256 386 C296 362 356 354 404 366 L404 88 C356 76 296 84 256 108 Z" fill="#F5EFE0" stroke="#F5EFE0" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M256 108 L256 386" stroke="#C1272D" stroke-width="10" stroke-linecap="round"/>
+  <!-- harp strings -->
+  <g stroke="#8A8474" stroke-width="7" stroke-linecap="round">
+    <path d="M148 150 C168 188 168 228 148 266"/>
+    <path d="M188 140 C208 180 208 232 188 272"/>
+    <path d="M364 150 C344 188 344 228 364 266"/>
+    <path d="M324 140 C304 180 304 232 324 272"/>
+  </g>
+  <!-- star as note -->
+  <g transform="translate(256, 235)">
+    <path d="M0 -72 L21 -18 L78 -18 L33 20 L48 76 L0 42 L-48 76 L-33 20 L-78 -18 L-21 -18 Z" fill="#C1272D" stroke="#C1272D" stroke-width="8" stroke-linejoin="round"/>
+    <circle cx="74" cy="-66" r="18" fill="#C1272D"/>
+    <path d="M74 -66 L74 8" stroke="#C1272D" stroke-width="8" stroke-linecap="round"/>
+    <path d="M74 -66 C58 -48 44 -34 66 -10" stroke="#C1272D" stroke-width="7" fill="none" stroke-linecap="round"/>
+  </g>
+  <!-- text -->
+  <text x="256" y="452" text-anchor="middle" font-family="Georgia, serif" font-size="42" font-weight="bold" fill="#F5EFE0">HARPA VERMELHA</text>
+</svg>
