@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { BrowserRouter, Routes, Route, Link, NavLink, useNavigate, useParams } from 'react-router-dom'
-import { Search, Heart, Home, BookOpen, Star, ArrowLeft, Minus, Plus, Moon, ExternalLink } from 'lucide-react'
+import { Search, Heart, Home, BookOpen, Star, ArrowLeft, Minus, Plus, Moon, ExternalLink, Music } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -24,6 +24,43 @@ function useFavorites() {
     })
   }
   return { favorites, toggle }
+}
+
+function AudioPlayer({ song }: { song: Song }) {
+  // streaming remoto (marxists.org) — sem arquivos locais embutidos (APK leve)
+  const [failed, setFailed] = useState(false)
+  if (!song.audioUrl) return null
+  return (
+    <Card className="mt-4 p-4">
+      <div className="mb-2 flex items-center gap-2">
+        <Music className="h-4 w-4 text-primary" />
+        <span className="text-sm font-semibold">Ouvir hino</span>
+        <span className="text-xs text-muted-foreground">({String(song.number).padStart(3, '0')})</span>
+      </div>
+      {failed ? (
+        <p className="text-sm text-muted-foreground">
+          Áudio indisponível no momento. Você pode ouvir na fonte:{' '}
+          <a className="underline" href={song.sourceUrl} target="_blank" rel="noreferrer">ver página original</a>
+        </p>
+      ) : (
+        <audio
+          key={song.id + song.audioUrl}
+          controls
+          preload="none"
+          className="w-full"
+          src={song.audioUrl}
+          onError={() => setFailed(true)}
+        >
+          Seu navegador não suporta áudio.
+        </audio>
+      )}
+      {!failed && (
+        <p className="mt-2 text-xs text-muted-foreground">
+          Streaming dentro do app — requer internet.
+        </p>
+      )}
+    </Card>
+  )
 }
 
 function Header() {
@@ -76,7 +113,7 @@ function SongList({ list, favorites, toggle }: { list: Song[]; favorites: string
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary text-sm font-bold">{String(song.number).padStart(3,'0')}</span>
               <span className="min-w-0">
                 <span className="block truncate font-medium">{song.title}</span>
-                <span className="block text-xs text-muted-foreground">{song.category}</span>
+                <span className="block text-xs text-muted-foreground">{song.category}{song.audioUrl ? <> • <Music className="inline h-3 w-3" /> com áudio</> : null}</span>
               </span>
             </Link>
             <Button variant={isFav ? 'default' : 'ghost'} size="icon" onClick={() => toggle(song.id)} aria-label="Favoritar">
@@ -194,6 +231,8 @@ function ReaderPage() {
             <Button size="sm" variant="outline" asChild><a href={song.sourceUrl} target="_blank" rel="noreferrer"><ExternalLink className="mr-2 h-4 w-4" /> Fonte</a></Button>
           </div>
         </Card>
+
+        <AudioPlayer song={song} />
 
         <Card className="mt-4 p-5">
           <p className="whitespace-pre-wrap leading-8" style={{ fontSize }}>{song.lyrics}</p>

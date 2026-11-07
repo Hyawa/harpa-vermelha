@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "import:songs": "node scripts/fetch-songs.mjs",
     "cap:sync": "pnpm build && pnpm exec cap sync android",
-    "cap:open": "pnpm exec cap open android"
+    "cap:open": "pnpm exec cap open android",
+    "android": "pnpm run cap:sync && cd android && gradlew.bat assembleDebug"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^8.1.1",
